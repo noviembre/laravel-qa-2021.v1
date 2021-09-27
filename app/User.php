@@ -10,9 +10,14 @@ class User extends Authenticatable
 {
     use Notifiable;
 
-    public function questions()
+    public function questions(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Question::class);
+    }
+
+    public function getUrlAttribute()
+    {
+        return '#';
     }
 
     /**
