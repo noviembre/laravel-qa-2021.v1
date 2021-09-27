@@ -14,10 +14,21 @@ class Question extends Model
 
     #================= Title Mutator
     #---for title slug
-    public function setTitleAttribute($value)
+    public function setTitleAttribute($value): void
     {
         $this->attributes['title'] = $value;
         $this->attributes['slug'] = \Str::slug($value);
     }
+
+    public function getUrlAttribute(): string
+    {
+        return route('questions.show',$this->id);
+    }
+
+    public function getCreatedDateAttribute()
+    {
+        return $this->created_at->diffForHumans();
+    }
+
 
 }
